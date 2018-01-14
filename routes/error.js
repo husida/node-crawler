@@ -1,3 +1,6 @@
+const express = require('express');
+const router = express.Router();
+
 router.get('/', function(err, req, res, next) {
    // set locals, only providing error in development
    res.locals.message = err.message;
