@@ -10,6 +10,7 @@ const Schema =mongoose.Schema;
 const adminSchema = new Schema({
 	userName: {type: String, required: true},
 	password: {type: String, required: true},
+	salt: String,
 	id:{type: String, default: uuidv1()},
 	createTime: {type: String, default:dayjs().format('YYYY-MM-DD HH:mm:ss')},
 	status: {type: Number, default: 4},  //1:超级管理员  2:普通管理员 3:会员 4:普通用户

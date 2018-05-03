@@ -1,7 +1,7 @@
 'use strict'
 
 const AdminModel = require('../models/admin');
-const utils = require('../utils/utils')
+const cryptoUtils = require('../utils/cryptoUtils')
 
 class Admin{
 
@@ -11,17 +11,19 @@ class Admin{
 
     async regist(req, res, next) {
         const {userName, password, status} = req.body;
-
+        console.log(req.body);
         if(userName === '') {
             res.send({
                 code: 0,
                 msg: '用户名不能为空'
             })
+            return;
         } else if (password === '') {
             res.send({
                 code: 0,
                 msg: '密码不能为空'
             })
+            return;
         }
 
         AdminModel.findOne({'userName':userName}, (err, admin) => {
@@ -32,7 +34,14 @@ class Admin{
                     msg: '该用户已存在',
                 })
             } else {
-                AdminModel.create({"userName": userName,"password":password, status:status}, (err) =>{
+                let salt = cryptoUtils.getRandomSalt();
+                let md5Pwd = cryptoUtils.cryptMd5Pwd(password,salt);
+                AdminModel.create({
+                    userName: userName,
+                    password: md5Pwd,
+                    salt: salt,
+                    status: status
+                }, (err) =>{
                     if (err) {
                         res.send({
                             code: 0,
