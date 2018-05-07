@@ -1,7 +1,7 @@
 'use strict'
 
 const mongoose = require('mongoose');
-const MongooseDao = require('../dao/MongooseDao')
+const MongooseDao = require('../dao/mongooseDao')
 const dayjs = require('dayjs');
 const uuidv1 = require('uuid/v1');
 
