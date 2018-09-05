@@ -1,5 +1,6 @@
 'use strict'
 
+const fs = require('fs');
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -20,7 +21,9 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+var accessLog = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags : 'a'}); 
 app.use(logger('dev'));
+app.use(logger('combined', {stream : accessLog}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());

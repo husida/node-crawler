@@ -3,6 +3,7 @@ const express = require('express')
 const error = require('./error.js');
 const admin = require('./admin');
 const utils = require('./utils');
+const crawler = require('./crawler');
 
 var router = express.Router();
 
@@ -15,6 +16,7 @@ const index = router.get('/', function(req, res, next) {
 module.exports = app => {
   app.use('/', index);
   app.use('/admin', admin);
-  app.use('/utils', utils)
+  app.use('/crawler', crawler);
+  app.use('/utils', utils);
   app.use(error);
 }
