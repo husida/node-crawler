@@ -1,4 +1,5 @@
-// const cryptoUtils = require('../utils/cryptoUtils');
+const cryptoUtils = require('../utils/cryptoUtils');
+const path = require('path');
 
 // let oriPwd = 123456;
 // // console.log(`原始密码${oriPwd}`);
@@ -20,6 +21,9 @@
 // // 加盐后 299ea7e8dc26594390e388d9bf892a9f
 
 
-let str = "ab/n《/tcd/nab》/tcdabcd".match(/《(\S*)》/)[1];
-// let str = "ab/n《/tcd/nab》/tcdabcd".match(/\(?<=a\)\(.*?\)\(?=b\)/);
+// let str = "ab/n《/tcd/nab》/tcdabcd".match(/《(\S*)》/)[1];
+// // let str = "ab/n《/tcd/nab》/tcdabcd".match(/\(?<=a\)\(.*?\)\(?=b\)/);
+// console.log(str);
+let str = path.join(__dirname , '../', 'download/imgages')
+str = path.join(str, 'aaa');
 console.log(str);
